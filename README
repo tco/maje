@@ -1,0 +1,13 @@
+Maje
+----
+Dependency and Build Manager
+
+Dependencies
+------------
+npm install request
+npm install filed
+npm install mkdirp
+
+Maje Majic
+----------
+
