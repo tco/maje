@@ -20,6 +20,8 @@ Maje Majic
         "deploy": "user@host:/path/to/dir/"
     },
     "majics": ["repository/jquery.majic"]
+    OR
+    "majics": ["https://raw.github.com/tco/Maje/master/repository/jquery.majic"]
 }
 
 .majic:
