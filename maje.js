@@ -18,9 +18,12 @@ mkdirp(basePath, 0777, function(error) {
                 protocol = majicSource.split(":").shift() || undefined;
             //If online source go and fetch
             if(supportedProtocols.indexOf(protocol) >= 0) {
-                request({ uri: majicSource}, function(error, response, majicDescriptor) {
+                request({ uri: majicSource }, function(error, response, majicDescriptor) {
                     if(!error && response.statusCode == 200) {
                         castMajic(JSON.parse(majicDescriptor));
+                    } else {
+                        console.log(error);
+                        process.exit(1);
                     }
                 });
             //Assume local source
@@ -39,7 +42,6 @@ mkdirp(basePath, 0777, function(error) {
 function castMajic(majic) {
     var path = [basePath,majic.paths.local].join(""),
         source = majic.source[buildTarget],
-        protocol = source.split(":").shift() || undefined,
         filename = source.split("/").pop();
     mkdirp(path, 0777, function(error) {
         if(!error) {
