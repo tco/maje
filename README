@@ -11,3 +11,29 @@ npm install mkdirp
 Maje Majic
 ----------
 
+.maje:
+{
+    "name": "Maje",
+    "version": "0.0.1alpha1",
+    "paths": {
+        "local": "src/main/js/",
+        "deploy": "user@host:/path/to/dir/"
+    },
+    "majics": ["repository/jquery.majic"]
+}
+
+.majic:
+{
+    "name": "jquery",
+    "version": "1.7.1",
+    "source": {
+        "production": "http://code.jquery.com/jquery-1.7.1.min.js",
+        "development": "http://code.jquery.com/jquery-1.7.1.js",
+        "git": "https://github.com/jquery/jquery.git"
+    },
+    "paths": {
+        "local": "lib/jquery/",
+        "git": "lib/",
+        "deploy": "lib/jquery/"
+    }
+}
