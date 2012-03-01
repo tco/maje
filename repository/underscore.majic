@@ -1,0 +1,14 @@
+{
+    "name": "underscore",
+    "version": "latest",
+    "source": {
+        "production": "http://documentcloud.github.com/underscore/underscore-min.js",
+        "development": "http://documentcloud.github.com/underscore/underscore.js",
+        "git": "https://github.com/documentcloud/underscore.git"
+    },
+    "paths": {
+        "local": "lib/underscore/",
+        "git": "lib/",
+        "deploy": "lib/underscore/"
+    }
+}

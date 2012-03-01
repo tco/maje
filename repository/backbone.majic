@@ -1,0 +1,15 @@
+{
+    "name": "backbone",
+    "version": "latest",
+    "source": {
+        "production": "http://documentcloud.github.com/backbone/backbone-min.js",
+        "development": "http://documentcloud.github.com/backbone/backbone.js",
+        "git": "https://github.com/documentcloud/backbone.git"
+    },
+    "paths": {
+        "local": "lib/backbone/",
+        "git": "lib/",
+        "deploy": "lib/backbone/"
+    },
+    "dependencies": ["repository/underscore.majic"]
+}
