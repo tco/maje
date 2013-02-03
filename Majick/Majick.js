@@ -1,23 +1,26 @@
 var Bacon = require("baconjs").Bacon,
     wrench = require('wrench'),
-    majickBus = new Bacon.Bus(),
     io = require('socket.io-client'),
+
     socket = io.connect('localhost', { port: 1337 }),
+    majickBus = new Bacon.Bus(),
 
     modules = {
         timeouts: {},
         replace: function(name, module) {
-            //var stream = new Bacon.EventStream();
             var stream = new Bacon.Bus();
+
             majickBus.plug(stream);
+
             clearTimeout(modules.timeouts[name]);
-            (function(name, module) {
+            //TODO: hook this up with Backbone collection change
+            (function(name, module, stream) {
                 setTimeout(function streamMetric() {
                     stream.push(module.metric);
                     modules.timeouts[name] = setTimeout(streamMetric, 1000);
                 }, 0);
-            })(name, module);
-            delete modules[name];
+            })(name, module, stream);
+
             modules[name] = module;
         },
         getMetric: function(name) {
