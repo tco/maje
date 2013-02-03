@@ -22,7 +22,6 @@ var Backbone = require('backbone'),
 
 (function setMetric(metric) {
     metric.set(metric.get('name'), { load: Math.random().toFixed(2) });
-    //metric.trigger('change');
     setTimeout(function() {
         setMetric(metric);
     }, metric.get('interval'));
