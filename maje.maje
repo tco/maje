@@ -1,9 +1,0 @@
-{
-    "name": "Maje",
-    "version": "0.0.1alpha1",
-    "paths": {
-        "development": "src/main/js/",
-        "deploy": "tco@0c.fi:/www/majestic11.com/"
-    },
-    "majics": ["repository/jquery.majic","repository/backbone.majic"]
-}
