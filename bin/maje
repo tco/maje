@@ -1,0 +1,113 @@
+#!/usr/bin/env node
+
+var program = require('commander'),
+    mkdirp = require('mkdirp'),
+    path = require('path'),
+    fs = require('fs'),
+    _ = require('lodash');
+
+_.mixin( require('underscore.string').exports() );
+_.templateSettings.interpolate = /\{\{(.+?)\}\}/g;
+
+program
+    .version('0.1.3')
+    //.option('-c, --component <path>', 'Create a new Maje Component');
+
+program
+    .command('feature [path]')
+    .description('Create a new Maje Feature')
+    .action(function(pathname) {
+        var cwd = process.cwd(),
+            javascriptTemplate = fs.readFileSync(path.resolve(__dirname, '../node_modules/maje-feature/templates/feature.js')).toString(),
+            htmlTemplate = fs.readFileSync(path.resolve(__dirname, '../node_modules/maje-feature/templates/feature.html')).toString(),
+            cssTemplate = fs.readFileSync(path.resolve(__dirname, '../node_modules/maje-feature/templates/feature.css')).toString();
+        program.confirm('Create new feature? (' + cwd + '/' + pathname + '): ', function(ok) {
+            if(ok) {
+                mkdirp(cwd + '/' + pathname, function(error) {
+                    if(error) {
+                        console.log(error);
+                        process.stdin.destroy();
+                    } else {
+                        program.prompt('Name: ', function(name) {
+                            var featureName = _(name).trim().toString(),
+                                lowercasedName = featureName.charAt(0).toLowerCase() + featureName.slice(1),
+                                slugName = (_(featureName).dasherize() + '').slice(1),
+                                javascriptUnderscoreTemplate = _.template( javascriptTemplate, {
+                                    name: featureName
+                                }),
+                                htmlUnderscoreTemplate = _.template( htmlTemplate, {
+                                    name: slugName
+                                }),
+                                cssUnderscoreTemplate = _.template( cssTemplate, {
+                                    name: slugName
+                                });
+
+                            fs.writeFile(cwd + '/' + pathname + '/' + lowercasedName + '.js', javascriptUnderscoreTemplate, function (error) {
+                                if (error) throw error;
+                                console.log('Created JavaScript template');
+                            });
+
+                            fs.writeFile(cwd + '/' + pathname + '/' + lowercasedName + '.html', htmlUnderscoreTemplate, function (error) {
+                                if (error) throw error;
+                                console.log('Created HTML template');
+                            });
+
+                            fs.writeFile(cwd + '/' + pathname + '/' + lowercasedName + '.scss', cssUnderscoreTemplate, function (error) {
+                                if (error) throw error;
+                                console.log('Created SCSS template');
+                            });
+
+                            console.log("Feature created");
+                            process.stdin.destroy();
+                        });
+                    }
+                });
+            } else {
+                console.log("Not creating");
+                process.stdin.destroy();
+            }
+        });
+    });
+
+program
+    .command('component [path]')
+    .description('Create a new Maje Component')
+    .action(function(pathname) {
+        var cwd = process.cwd(),
+            javascriptTemplate = fs.readFileSync(path.resolve(__dirname, '../node_modules/maje-component/templates/component.js')).toString();
+        program.confirm('Create new component? (' + cwd + '/' + pathname + '): ', function(ok) {
+            if(ok) {
+                mkdirp(cwd + '/' + pathname, function(error) {
+                    if(error) {
+                        console.log(error);
+                        process.stdin.destroy();
+                    } else {
+                        program.prompt('Name: ', function(name) {
+                            var componentName = _(name).trim().toString(),
+                                lowercasedName = componentName.charAt(0).toLowerCase() + componentName.slice(1),
+                                javascriptUnderscoreTemplate = _.template( javascriptTemplate, {
+                                    name: componentName
+                                });
+
+                            fs.writeFile(cwd + '/' + pathname + '/' + lowercasedName + '.js', javascriptUnderscoreTemplate, function (error) {
+                                if (error) throw error;
+                                console.log('Created JavaScript template');
+                            });
+
+                            console.log("Component created");
+                            process.stdin.destroy();
+                        });
+                    }
+                });
+            } else {
+                console.log("Not creating");
+                process.stdin.destroy();
+            }
+        });
+    });
+
+program.parse(process.argv);
+
+
+
+
