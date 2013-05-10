@@ -14,5 +14,21 @@
   "bin": {
     "maje": "bin/maje"
   },
-  "engine": "node >= 0.4.1"
+  "engine": "node >= 0.4.1",
+  "gitHead": "75a6a02d50e5156e6a36967924226e3af730c559",
+  "version": "0.0.1",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/tco/maje.git"
+  },
+  "keywords": [
+    "maje",
+    "enterprise",
+    "toolkit"
+  ],
+  "license": "BSD"
 }
