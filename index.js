@@ -1,7 +1,5 @@
 // Resources
-var Bacon = require('baconjs').Bacon,
-    //Streamer = require('maje-streamer'),
-    Feature = require('maje-feature'),
+var Feature = require('maje-feature'),
     Component = require('maje-component');
 
 
