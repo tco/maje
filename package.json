@@ -2,13 +2,14 @@
   "name": "maje",
   "description": "Maje - toolkit for enterprise JavaScript development",
   "author": "Antti Rintala <antti.rintala@houston-inc.com>",
+  "contributors": ["Vadim Zapolski <v.zapolskydovnar@gmail.com>"],
   "dependencies": {
     "commander": "~1.1.1",
     "mkdirp": "~0.3.5",
-    "lodash": "~1.2.1",
+    "lodash": ">=1.2.1",
     "underscore.string": "~2.3.1",
-    "maje-component": "0.0.1",
-    "maje-feature": "0.0.1"
+    "maje-component": ">=0.0.1",
+    "maje-feature": ">=0.0.1"
   },
   "devDependencies": {},
   "bin": {
